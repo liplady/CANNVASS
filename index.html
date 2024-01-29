@@ -1,48 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Графический редактор</title>
-  <style>
-    #canvas {
-      border: 1px solid black;
-      cursor: crosshair;
-    }
-  </style>
+<title>Графический редактор</title>
+<style>
+/* Стили для области рисования */
+#canvas {
+border: 1px solid black;
+}
+</style>
 </head>
+
 <body>
-  <input type="color" id="colorPicker" onchange="changeColor()" value="#000000">
-  <canvas id="canvas" width="500" height="500"></canvas>
+<canvas id="canvas" width="500" height="500"></canvas>
 
-  <script>
-    var canvas = document.getElementById("canvas");
-    var context = canvas.getContext("2d");
-    var colorPicker = document.getElementById("colorPicker");
-    var isDrawing = false;
+<div>
+<button id="color-red">Красный</button>
+<button id="color-blue">Синий</button>
+<button id="color-green">Зеленый</button>
+</div>
 
-    function changeColor() {
-      context.strokeStyle = colorPicker.value;
-    }
+<script>
+// Подключение сценария рисования
+window.onload = function() {
+// Получение элемента холста
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
 
-    function startDrawing(event) {
-      isDrawing = true;
-      context.beginPath();
-      context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-    }
+// Установка начального цвета
+var currentColor = "black";
 
-    function draw(event) {
-      if (isDrawing) {
-        context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-        context.stroke();
-      }
-    }
+// Функция рисования
+function drawLine(x, y) {
+context.strokeStyle = currentColor;
+context.beginPath();
+context.moveTo(x, y);
+canvas.onmousemove = function(e) {
+var x = e.pageX - canvas.offsetLeft;
+var y = e.pageY - canvas.offsetTop;
+context.lineTo(x, y);
+context.stroke();
+};
+}
 
-    function stopDrawing() {
-      isDrawing = false;
-    }
+// Начать рисование при движении мыши
+canvas.onmousedown = function(e) {
+var x = e.pageX - canvas.offsetLeft;
+var y = e.pageY - canvas.offsetTop;
+drawLine(x, y);
+};
 
-    canvas.addEventListener("mousedown", startDrawing);
-    canvas.addEventListener("mousemove", draw);
-    canvas.addEventListener("mouseup", stopDrawing);
-  </script>
+// Закончить рисование при отпускании кнопки мыши
+canvas.onmouseup = function() {
+canvas.onmousemove = null;
+};
+
+// Изменить цвет рисования
+document.getElementById("color-red").onclick = function() {
+currentColor = "red";
+};
+
+document.getElementById("color-blue").onclick = function() {
+currentColor = "blue";
+};
+
+document.getElementById("color-green").onclick = function() {
+currentColor = "green";
+};
+};
+</script>
 </body>
+
 </html>
