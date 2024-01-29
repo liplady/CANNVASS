@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-   <link rel="stylesheet" href="style.css"> 
-  </head>
-    <body>
-    <canvas id="canvas_plot" height="700" width="700 ></canvas>
-    <script src="script.js"></script>
-  </body>
+<html>
+<head>
+  <title>Графический редактор</title>
+  <style>
+    #canvas {
+      border: 1px solid black;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <input type="color" id="colorPicker" onchange="changeColor()" value="#000000">
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var colorPicker = document.getElementById("colorPicker");
+    var isDrawing = false;
+
+    function changeColor() {
+      context.strokeStyle = colorPicker.value;
+    }
+
+    function startDrawing(event) {
+      isDrawing = true;
+      context.beginPath();
+      context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+    }
+
+    function draw(event) {
+      if (isDrawing) {
+        context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+        context.stroke();
+      }
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", stopDrawing);
+  </script>
+</body>
 </html>
