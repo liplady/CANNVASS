@@ -2,13 +2,7 @@
 <html>
 
 <head>
-<title>Графический редактор</title>
-<style>
-/* Стили для области рисования */
-#canvas {
-border: 1px solid black;
-}
-</style>
+<title>хапимаша</title>
 </head>
 
 <body>
@@ -68,64 +62,6 @@ requestAnimationFrame(animate);
 
 
 	</script>
-  
-<canvas id="canvas" width="500" height="500"></canvas>
-
-<div>
-<button id="color-red">Красный</button>
-<button id="color-blue">Синий</button>
-<button id="color-green">Зеленый</button>
-</div>
-
-<script>
-// Подключение сценария рисования
-window.onload = function() {
-// Получение элемента холста
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
-
-// Установка начального цвета
-var currentColor = "black";
-
-// Функция рисования
-function drawLine(x, y) {
-context.strokeStyle = currentColor;
-context.beginPath();
-context.moveTo(x, y);
-canvas.onmousemove = function(e) {
-var x = e.pageX - canvas.offsetLeft;
-var y = e.pageY - canvas.offsetTop;
-context.lineTo(x, y);
-context.stroke();
-};
-}
-
-// Начать рисование при движении мыши
-canvas.onmousedown = function(e) {
-var x = e.pageX - canvas.offsetLeft;
-var y = e.pageY - canvas.offsetTop;
-drawLine(x, y);
-};
-
-// Закончить рисование при отпускании кнопки мыши
-canvas.onmouseup = function() {
-canvas.onmousemove = null;
-};
-
-// Изменить цвет рисования
-document.getElementById("color-red").onclick = function() {
-currentColor = "red";
-};
-
-document.getElementById("color-blue").onclick = function() {
-currentColor = "blue";
-};
-
-document.getElementById("color-green").onclick = function() {
-currentColor = "green";
-};
-};
-</script>
 </body>
 
 </html>
