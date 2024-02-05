@@ -2,26 +2,26 @@
 <html>
 
 <head>
-<title>хапимаша</title>
+<title>iiiiii</title>
 </head>
 
 <body>
   <p style="text-align: center">
 
-	<button>Нажми, если маша чмардос</button>
-	<p>Предупреждение: Маша не чмардос</p>
+	<button>jjjjjj</button>
+	<p>jjjjjj</p>
 
 	<style>
 		body {
 			height: 200px;
-			background: white;
+			background: black;
 		}
 
 		.dot {
 			height: 8px;
 			width: 8px;
 			border-radius: 4px;
-			/*DFDHDHOPDJPDHDIOOPD вы умерли вас съела Маша*/
+			/* скруглённые углы */
 			background: blue;
 			position: absolute;
 		}
@@ -29,39 +29,79 @@
 
 
 
-	<img id="myImg" src="hapimasha.png" style="position: relative" height="100" widht="100">
+	<img id="myImg" src="https://w7.pngwing.com/pngs/117/10/png-transparent-earth-desktop-planet-earth-globe-atmosphere-world.png" style="position: relative" widht="100">
 </p>
+
+
+	<html>
+
+	<head>
+		<style>
+			#train {
+				position: relative;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<img id="train" src="https://w7.pngwing.com/pngs/308/627/png-transparent-light-a-sun-sunlight-light-sun.png" widht="200">
+
+
+		<script>
+train.onclick = function() {
+      let start = Date.now();
+
+	let timer = setInterval(function() {
+	let timePassed = Date.now() - start;
+
+train.style.left = timePassed / -60 + 'px';
+train.style.top = timePassed / 50 + 'px';
+
+		if (timePassed > 2000) clearInterval(timer);
+
+      }, 20);
+    }
+		</script>
+
+
+
+
+	</html>
 	<script>
 		var cat = document.querySelector("img");
 var angle = 0, lastTime = null;
 function animate(time) {
 if (lastTime != null)
-angle += (time - lastTime) * 0.01;
+angle += (time - lastTime) * 0.001;
 lastTime = time;
-cat.style.top = (Math.sin(angle) * 50) + "px";
-cat.style.left = (Math.cos(angle) * 10) + "px";
+cat.style.top = (Math.sin(angle) * 300) + "px";
+cat.style.left = (Math.cos(angle) * 300) + "px";
 requestAnimationFrame(animate);
 }
 
 var button = document.querySelector("button");
 button.addEventListener("click", function() {
-alert("FSJFOFG{PF}FJ Маша вас съела, Вы проиграли!");
+alert("Маловато будет!");
 });
 
 document.getElementById('myImg').onclick = myFunction;
 
 function myFunction() {
-  alert('ААААААААААААА!!! Вы ударили Машу');
+  alert('Ouch!!!');
 }
 
 
 requestAnimationFrame(animate);
 
-
-
-
-
 	</script>
-</body>
+	</style>
+	<p1>
 
-</html>
+
+		<img id="myImg" src="" style="position: relative">
+	</p1>
+
+
+		</body>
